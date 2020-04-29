@@ -12,9 +12,9 @@ class Model:
     15
     """
     fields = {}
-    _cached_fields = {}
 
     def __init__(self, content):
+        self._cached_fields = {}
         self.content = content
 
     def __getattr__(self, name):
