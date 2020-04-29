@@ -2,7 +2,15 @@ from lxml import etree
 import re
 import requests
 
+from typing import Tuple
+
 from academico.security import RSA
+
+def parse_multi_xpath(content: str, xpath: str) -> Tuple[str, ...]:
+    dom = etree.HTML(content)
+    elements = dom.xpath(xpath)
+
+    return tuple(etree.tostring(i) for i in elements)
 
 def parse_xpath(content: str, xpath: str) -> str:
     tree = etree.HTML(content)
