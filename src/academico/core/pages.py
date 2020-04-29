@@ -6,9 +6,9 @@ class Page:
     params = None
     headers = None
     models = {}
-    extracted_data = {}
 
     def __init__(self, session=None):
+        self.extracted_data = {}
         self.session = session or self.get_session()
 
     def extract(self):
