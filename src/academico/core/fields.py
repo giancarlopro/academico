@@ -37,6 +37,14 @@ class StringField(Field):
         return str(value)
 
 
+class FloatField(Field):
+    def to_python(self, value):
+        if isinstance(value, str):
+            value = value.replace(',', '.')
+
+        return float(value)
+
+
 class ModelField:
     model = None
     elements_xpath = None
