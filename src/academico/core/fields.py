@@ -1,4 +1,4 @@
-from academico.core.utils import parse_xpath, parse_regex
+from academico.core.utils import parse_xpath, parse_regex, parse_multi_xpath
 
 
 class Field:
@@ -35,3 +35,25 @@ class StringField(Field):
         if isinstance(value, str):
             return value
         return str(value)
+
+
+class ModelField:
+    model = None
+    elements_xpath = None
+
+    def __init__(self, model=None, elements_xpath=None):
+        self._elements = []
+        self.model = model or self.model
+        self.elements_xpath = elements_xpath or self.elements_xpath
+
+    def parse_value(self, content: str, parse_multi_xpath=parse_multi_xpath):
+        for element_content in parse_multi_xpath(content, self.elements_xpath):
+            self._elements.append(self.model(element_content))
+
+        return self
+
+    def __getitem__(self, key):
+        if not isinstance(key, int):
+            raise TypeError()
+
+        return self._elements[key]
