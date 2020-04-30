@@ -13,6 +13,8 @@ requests-mock = "*"
 beautifulsoup4 = "*"
 lxml = "*"
 django = "*"
+django-heroku = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
