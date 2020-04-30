@@ -7,10 +7,12 @@ verify_ssl = true
 pytest = "*"
 rope = "*"
 yapf = "*"
+requests-mock = "*"
 
 [packages]
 beautifulsoup4 = "*"
 lxml = "*"
+django = "*"
 
 [requires]
 python_version = "3.8"
