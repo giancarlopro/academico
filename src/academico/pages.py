@@ -11,7 +11,21 @@ class AcademicoRootPage(Page):
 
 
 class BoletimPage(AcademicoRootPage):
-    params = {'t': '2032'}
     models = {
         'boletim': Boletim
     }
+
+    def __init__(self, session=None, ano=None, periodo=None):
+        super().__init__(session=session)
+        self.ano = ano
+        self.periodo = periodo
+
+    def get_params(self, params: dict):
+        params.update({'t': '2032'})
+
+        if self.ano:
+            params.update({'cmbanos': self.ano})
+        if self.periodo:
+            params.update({'cmdperiodos': self.periodo})
+
+        return params

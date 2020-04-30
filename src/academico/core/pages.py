@@ -3,34 +3,35 @@ import requests
 
 class Page:
     url = None
-    params = None
-    headers = None
     models = {}
 
     def __init__(self, session=None):
         self.extracted_data = {}
-        self.session = session or self.get_session()
+        self.session = session
+        self.params = None
+        self.headers = None
 
     def extract(self):
+        session = self.get_session(self.session)
         url = self.get_url(self.url or '')
         params = self.get_params(self.params or {})
         headers = self.get_headers(self.headers or {})
 
-        response = self.session.get(url, params=params, headers=headers)
+        response = session.get(url, params=params, headers=headers)
 
         for name, model in self.models.items():
             self.extracted_data[name] = model(response.text)
 
-    def get_session(self):
-        return requests.Session()
+    def get_session(self, session):
+        return session
 
-    def get_url(self, url=None):
+    def get_url(self, url):
         return url
 
-    def get_params(self, params=None):
+    def get_params(self, params):
         return params
 
-    def get_headers(self, headers=None):
+    def get_headers(self, headers):
         return headers
 
     def __getattr__(self, name):
