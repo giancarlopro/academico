@@ -17,7 +17,7 @@ class Disciplina(Model):
 
 class Boletim(Model):
     fields = {
-        'ano': StringField('//*[@id="cmbanos"]/option[@selected]'),
+        'ano': IntegerField('//*[@id="cmbanos"]/option[@selected]'),
         'periodo': IntegerField('//*[@id="cmbperiodos"]/option[@selected]'),
         'media_disciplinas': FloatField('/html/body/table/tr[2]/td/table/tr[2]/td[2]/table[5]/tr[1]/td[2]/div'),
         'rendimento_global': FloatField('/html/body/table/tr[2]/td/table/tr[2]/td[2]/table[5]/tr[1]/td[5]/div'),
