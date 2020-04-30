@@ -26,6 +26,6 @@ class BoletimPage(AcademicoRootPage):
         if self.ano:
             params.update({'cmbanos': self.ano})
         if self.periodo:
-            params.update({'cmdperiodos': self.periodo})
+            params.update({'cmbperiodos': self.periodo})
 
         return params
