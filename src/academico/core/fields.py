@@ -18,19 +18,30 @@ class Field:
 
         if self.expression is not None:
             value = parse_regex(value, self.expression)
+        
+        value = value if len(value) > 0 else self.default_value()
 
         return self.to_python(value)
+
+    def default_value(self):
+        return None
 
     def to_python(self, value):
         return value
 
 
 class IntegerField(Field):
+    def default_value(self):
+        return 0
+
     def to_python(self, value):
         return int(value)
 
 
 class StringField(Field):
+    def default_value(self):
+        return 'Não Encontrado'
+
     def to_python(self, value):
         if isinstance(value, str):
             return value
@@ -38,6 +49,9 @@ class StringField(Field):
 
 
 class FloatField(Field):
+    def default_value(self):
+        return 0.0
+
     def to_python(self, value):
         if isinstance(value, str):
             value = value.replace(',', '.')
