@@ -111,3 +111,5 @@ dmypy.json
 
 # Ignore .vscode
 .vscode/
+
+db.sqlite3

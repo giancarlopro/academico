@@ -15,6 +15,7 @@ lxml = "*"
 django = "*"
 django-heroku = "*"
 gunicorn = "*"
+academico = {editable = true,path = "."}
 
 [requires]
 python_version = "3.8"
